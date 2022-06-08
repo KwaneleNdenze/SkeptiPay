@@ -7,32 +7,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <% if current_page?(controller: 'pages', action: 'index') %>
-          <li><%= link_to 'Home', root_path, class: 'active'%></li>
-          <% else %>
-          <li><%= link_to 'Home', root_path %></li>
-          <% end %>
-
-          <% if current_page?(controller: 'pages', action: 'about') %>
-          <li><%= link_to 'About', about_path, class: 'active'%></li>
-          <% else %>
-          <li><%= link_to 'About', about_path %></li>
-          <% end %>
-
-          <% if current_page?(controller: 'pages', action: 'blog') %>
-          <li><%= link_to 'Blog', blog_path, class: 'active'%></li>
-          <% else %>
-          <li><%= link_to 'Blog', blog_path %></li>
-          <% end %>
-
-         <% if current_page?(controller: 'pages', action: 'contact') %>
-          <li><%= link_to 'Contact', contact_path, class: 'active'%></li>
-          <% else %>
-          <li><%= link_to 'Contact', contact_path %></li>
-          <% end %>
-          <%= link_to 'Login', root_path, class: 'getstarted'%>
-          <%= link_to 'Register', root_path, class: 'getstarted'%>
+          <li><%= link_to 'Home', root_path, class: get_active_link(root_path)%></li>
+          <li><%= link_to 'About', about_path, class: get_active_link(about_path) %></li>
+          <li><%= link_to 'Blog', blog_path, class: get_active_link(blog_path) %></li>
+          <li><%= link_to 'Contact', contact_path, class: get_active_link(contact_path) %></li>
           
+          <%= link_to 'Login', root_path, class: 'getstarted'%>
+          <%= link_to 'Register', root_path, class: 'getstarted'%>  
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
