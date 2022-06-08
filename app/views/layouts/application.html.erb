@@ -24,28 +24,18 @@
 
   <!-- Template Main CSS File -->
   <link href="Sailor/assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Sailor - v4.7.0
-  * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
     <%= render 'layouts/navbar'%>
     <main role="main">
-    <%= content_for?(:content) ? yield(:content) : yield %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <%= render 'layouts/footer'%>
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <!-- Sailor/Vendor JS Files -->
   <script src="Sailor/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="Sailor/assets/vendor/glightbox/js/glightbox.min.js"></script>

@@ -3,7 +3,7 @@
 
       <img src="Sailor/assets/img/SkeptiPayLogo2.png" class="img-fluid" width="50px" height="50px" alt=""><div style="padding-left:10px;"><h2 class="logo me-auto"><%= link_to 'SkeptiPay', root_path %></h2></div>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="index.html" class="logo me-auto"><img src="Sailor/assets/img/logo.png" alt="" class="img-fluid"></a>
+      <a href="index.html" class="logo me-auto"><img src="../Sailor/assets/img/logo.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -14,21 +14,21 @@
           <% end %>
 
           <% if current_page?(controller: 'pages', action: 'about') %>
-          <li><%= link_to 'About', pages_about_path, class: 'active'%></li>
+          <li><%= link_to 'About', about_path, class: 'active'%></li>
           <% else %>
-          <li><%= link_to 'About', pages_about_path %></li>
+          <li><%= link_to 'About', about_path %></li>
           <% end %>
 
           <% if current_page?(controller: 'pages', action: 'blog') %>
-          <li><%= link_to 'Blog', pages_blog_path, class: 'active'%></li>
+          <li><%= link_to 'Blog', blog_path, class: 'active'%></li>
           <% else %>
-          <li><%= link_to 'Blog', pages_blog_path %></li>
+          <li><%= link_to 'Blog', blog_path %></li>
           <% end %>
 
          <% if current_page?(controller: 'pages', action: 'contact') %>
-          <li><%= link_to 'Contact', pages_contact_path, class: 'active'%></li>
+          <li><%= link_to 'Contact', contact_path, class: 'active'%></li>
           <% else %>
-          <li><%= link_to 'Contact', pages_contact_path %></li>
+          <li><%= link_to 'Contact', contact_path %></li>
           <% end %>
           <%= link_to 'Login', root_path, class: 'getstarted'%>
           <%= link_to 'Register', root_path, class: 'getstarted'%>
