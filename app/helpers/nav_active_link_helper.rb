@@ -1,5 +1,5 @@
 module NavActiveLinkHelper
-  def get_active_link(path)
+  def active_link_css(path)
     current_page?(path) ? 'active' : ''
   end
 end
