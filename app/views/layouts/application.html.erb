@@ -29,9 +29,7 @@
   </head>
 
   <body>
-    <p class="notice">
-      <%= notice %>
-    </p>
+    
     <%= render 'layouts/navbar'%>
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
