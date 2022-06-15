@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [:dashboard]
   def index
 
   end
@@ -13,5 +14,9 @@ class PagesController < ApplicationController
 
   def contact
     
+  end
+
+  def dashboard
+
   end
 end
