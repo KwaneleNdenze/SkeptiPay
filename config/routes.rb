@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
   get 'blog', to: 'pages#blog'
+  get 'dashboard', to: 'pages#dashboard'
 
 end
