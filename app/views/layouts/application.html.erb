@@ -29,6 +29,7 @@
   </head>
 
   <body>
+    
     <%= render 'layouts/navbar'%>
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
