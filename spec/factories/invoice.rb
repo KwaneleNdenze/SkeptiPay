@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :invoice do
-    user_id {Faker::Number.number(10)}
+    account_id {Faker::Number.number(0)}
     description { Faker::Lorem.word }
-    debit { Faker::Number.number(1000)}
-    credit { Faker::Number.number(1000)}     
+    debit { Faker::Number.number(5)}
+    credit { Faker::Number.number(5)}     
   end
 end

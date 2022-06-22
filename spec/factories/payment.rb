@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :payment do
-    user_id {Faker::Number.number(10)}
-    amount { Faker::Number.number(1000) }
+    account_id {Faker::Number.number(1)}
+    amount { Faker::Number.number(5) }
     description { Faker::Lorem.word}
-    status { "pending" }
+    status { Faker::Number.number(1) } 
     verification_code { "123456" }     
   end
 end

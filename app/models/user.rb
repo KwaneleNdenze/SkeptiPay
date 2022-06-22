@@ -1,8 +1,5 @@
 class User < ApplicationRecord   
-   has_many :invoices
-   has_many :notifications 
-   has_many :payments
-   has_many :withdrawals
+   has_one :account
    # validations
    validates_presence_of :username, :email, :phone_number, :encrypted_password, :role
 

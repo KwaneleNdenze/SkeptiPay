@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :notification do
-    user_id {Faker::Number.number(10)}
+    account_id {Faker::Number.number(1)}
     recipient { Faker::Lorem.word }
     subject { Faker::Lorem.word}
     text { Faker::Lorem.word }
-    status { "read" }     
+    status { Faker::Number.number(1) }     
   end
 end

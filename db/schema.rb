@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_22_093329) do
+ActiveRecord::Schema.define(version: 2022_06_22_134845) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
 
   create_table "invoices", force: :cascade do |t|
     t.string "debit"
@@ -18,30 +25,30 @@ ActiveRecord::Schema.define(version: 2022_06_22_093329) do
     t.string "credit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_invoices_on_user_id"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_invoices_on_account_id"
   end
 
   create_table "notifications", force: :cascade do |t|
     t.string "recipient"
-    t.text "text"
+    t.text "body"
     t.string "subject"
-    t.string "status"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_notifications_on_user_id"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_notifications_on_account_id"
   end
 
   create_table "payments", force: :cascade do |t|
     t.string "amount"
     t.text "description"
     t.string "verification_code"
-    t.string "status"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_payments_on_user_id"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_payments_on_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,18 +62,20 @@ ActiveRecord::Schema.define(version: 2022_06_22_093329) do
     t.integer "role"
     t.string "phone_number"
     t.string "username"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "withdrawals", force: :cascade do |t|
     t.string "amount"
-    t.string "status"
+    t.integer "status"
     t.string "verification_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_withdrawals_on_user_id"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_withdrawals_on_account_id"
   end
 
 end
