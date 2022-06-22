@@ -1,23 +1,29 @@
 require 'rails_helper'
 
-describe 'user_sign_up' do
-
-  params = {
-    'email': 'user@skeptipay.co.za',
-    'password': 'password1234'
-  }
-  subject { post user_session_path, params: params }
+RSpec.describe Users::SessionsController, type: :request do
  
   context 'with valid params' do
+    let(:user) { FactoryBot.create(:user, password: 'password1234', password_confirmation: 'password1234') }
+    subject { post user_session_path, params: {user: {email: user.email, password: 'password1234'}} }
     let(:params) { attributes_for(:user) }
-    it do
+    xit do
       expect{
         subject
-      }.to change(User, :count).by(1)
+        user.reload
+      }.to change(user, :updated_at)
     end
   end
   
   context 'with invalid params' do
-   # make user params invalid
+    let(:user) { FactoryBot.create(:user, password: 'password1234', password_confirmation: 'password1234') }
+    subject { post user_session_path, params: {user: {email: '', password: ''}}  }
+    
+    let(:params) { attributes_for(:user) }
+    xit do
+      expect{
+        subject
+        user.reload
+      }.not_to change(user, :updated_at)
+    end
   end
 end
