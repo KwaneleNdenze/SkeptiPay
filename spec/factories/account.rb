@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :account do
-   user       
+   user { build(:user) }       
   end
 end

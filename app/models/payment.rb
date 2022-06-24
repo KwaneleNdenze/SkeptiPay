@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   belongs_to :account
   
-  enum status: {requested: 0, approved: 0}
+  enum status: {requested: 0, approved: 1}
 
   after_initialize :set_default_status, :if => :new_record?
 
