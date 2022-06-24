@@ -4,7 +4,7 @@ class CreateSkeptiPayTables < ActiveRecord::Migration[5.2]
       t.string :amount
       t.text :description
       t.string :verification_code
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
       t.references :account, index: true, foreign_key: true
@@ -21,7 +21,7 @@ class CreateSkeptiPayTables < ActiveRecord::Migration[5.2]
 
     create_table :withdrawals do |t|
       t.string :amount
-      t.integer :status
+      t.integer :status, default: 0
       t.string :verification_code
 
       t.timestamps
@@ -32,7 +32,7 @@ class CreateSkeptiPayTables < ActiveRecord::Migration[5.2]
       t.string :recipient
       t.text :body
       t.string :subject
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
       t.references :account, index: true, foreign_key: true
@@ -44,9 +44,9 @@ class CreateSkeptiPayTables < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_column :users, :role, :integer
+    add_column :users, :role, :integer, default: 0
     add_column :users, :phone_number, :string
     add_column :users, :username, :string
-    remove_column :users, :account_id
+    remove_column :users, :account_id, :integer
   end
 end

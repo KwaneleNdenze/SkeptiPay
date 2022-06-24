@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_06_24_121839) do
     t.string "recipient"
     t.text "body"
     t.string "subject"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "account_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_06_24_121839) do
     t.string "amount"
     t.text "description"
     t.string "verification_code"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "account_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_06_24_121839) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role"
+    t.integer "role", default: 0
     t.string "phone_number"
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2022_06_24_121839) do
 
   create_table "withdrawals", force: :cascade do |t|
     t.string "amount"
-    t.integer "status"
+    t.integer "status", default: 0
     t.string "verification_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
