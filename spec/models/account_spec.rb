@@ -12,7 +12,7 @@ RSpec.describe Account, type: :model do
     before { build_stubbed(:account) }
 
     context "presence" do
-      it { should have_one :user }  
+      it { should belong_to :user }  
       it { should have_many :invoices } 
       it { should have_many :withdrawals } 
       it { should have_many :notifications } 

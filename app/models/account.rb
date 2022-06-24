@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  has_one :user
+  belongs_to :user
   has_many :invoices
   has_many :withdrawals
   has_many :payments

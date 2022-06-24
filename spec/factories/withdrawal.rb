@@ -3,6 +3,6 @@ FactoryBot.define do
     account_id {Faker::Number.number(10)}
     amount { Faker::Number.number(1000) }
     verification_code { "123456" }
-    status { Faker::Number.number(10) }   
+    status { Faker::Number.number(1) }   
   end
 end
