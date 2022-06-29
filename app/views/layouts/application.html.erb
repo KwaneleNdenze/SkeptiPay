@@ -1,51 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "SKEPTIPAY" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "SKEPTIPAY" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <!-- Favicons -->
-  <link href="Sailor/assets/favicon.ico" rel="icon">
-  <link href="Sailor/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="Sailor/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="Sailor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="Sailor/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="Sailor/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="Sailor/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="Sailor/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="Sailor/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="Sailor/assets/css/style.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="./css/main.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    
+
     <%= render 'layouts/navbar'%>
-    <main role="main">
-      <%= content_for?(:content) ? yield(:content) : yield %>
-    </main>
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <%= content_for?(:content) ? yield(:content) : yield %>
     <%= render 'layouts/footer'%>
-  <!-- Sailor/Vendor JS Files -->
-  <script src="Sailor/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="Sailor/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="Sailor/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="Sailor/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="Sailor/assets/vendor/waypoints/noframework.waypoints.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="Sailor/assets/js/main.js"></script>
-  
   </body>
 </html>

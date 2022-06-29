@@ -1,12 +1,35 @@
 {
-  "name": "SkeptiPay",
+  "name": "skeptipay",
   "private": true,
   "devDependencies": {
+    "tailwindcss": "^3.1.4",
     "webpack-dev-server": "2.11.2"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1"
-  }
+  },
+  "description": "<h1 align=\"center\">SkeptiPay</h1>",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "tailwindcss -i ./public/css/input.css -o ./public/css/main.css",
+    "watch": "tailwindcss -i ./public/css/input.css -o ./public/css/main.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KwaneleNdenze/SkeptiPay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KwaneleNdenze/SkeptiPay/issues"
+  },
+  "homepage": "https://github.com/KwaneleNdenze/SkeptiPay#readme"
 }
