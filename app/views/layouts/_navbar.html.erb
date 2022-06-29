@@ -46,18 +46,15 @@
             </div>
           </div>
           <div class="hidden space-x-8 md:flex md:ml-10">
-            <a href="#" class="text-base font-medium text-white hover:text-gray-300">Home</a>
-
-            <a href="#" class="text-base font-medium text-white hover:text-gray-300">How It Works</a>
-
-            <a href="#" class="text-base font-medium text-white hover:text-gray-300">Blog</a>
-
-            <a href="#" class="text-base font-medium text-white hover:text-gray-300">Contact</a>
+            <%= link_to 'Home', root_path, class: "text-base font-medium text-white hover:text-gray-300" %>
+            <%= link_to 'How It Works', about_path, class: "text-base font-medium text-white hover:text-gray-300" %>
+            <%= link_to 'Blog', blog_path, class: "text-base font-medium text-white hover:text-gray-300" %>
+            <%= link_to 'Contact', contact_path, class: "text-base font-medium text-white hover:text-gray-300" %>
           </div>
         </div>
         <div class="hidden md:flex md:items-center md:space-x-6">
-          <a href="#" class="text-base font-medium text-white hover:text-gray-300"> Log in </a>
-          <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen"> Start free trial </a>
+          <%= link_to 'Login', root_path, class: "text-base font-medium text-white hover:text-gray-300" %>
+          <%= link_to 'Start free trial', root_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen" %>
         </div>
       </nav>
     </div>
