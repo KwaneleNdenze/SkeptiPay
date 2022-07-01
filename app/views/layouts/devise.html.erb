@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-bodyGray">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "SKEPTIPAY" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "SKEPTIPAY" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "SkeptiPay" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "SkeptiPay" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <!-- Favicons -->
@@ -14,14 +14,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <%= stylesheet_link_tag 'main', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <%= stylesheet_link_tag 'main', media: 'all', 'data-turbolinks-track': 'reload' %>
+  
   </head>
+<body class="h-full">
 
-  <body>
+<%= content_for?(:content) ? yield(:content) : yield %>
 
-    <%= render 'layouts/navbar'%>
-    <%= content_for?(:content) ? yield(:content) : yield %>
-    <%= render 'layouts/footer'%>
-  </body>
+</body>
 </html>
+
