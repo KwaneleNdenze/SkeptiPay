@@ -27,7 +27,7 @@
 
 <div class="relative overflow-hidden">
   <header class="relative">
-    <div class="bg-gray-800 pt-6">
+    <div class="bg-bodyGray pt-6">
       <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
         <div class="flex items-center flex-1">
           <div class="flex items-center justify-between w-full md:w-auto">
@@ -45,6 +45,9 @@
               </button>
             </div>
           </div>
+          <% if user_signed_in? %>
+            <%= link_to 'Log Out', destroy_user_session_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen", data: {confirm: 'Are you sure?'}, method: :delete %>
+          <% else %>
           <div class="hidden space-x-8 md:flex md:ml-10">
             <%= link_to 'Home', root_path, class: "text-base font-medium text-white hover:text-gray-300" %>
             <%= link_to 'How It Works', about_path, class: "text-base font-medium text-white hover:text-gray-300" %>
@@ -53,9 +56,11 @@
           </div>
         </div>
         <div class="hidden md:flex md:items-center md:space-x-6">
-          <%= link_to 'Login', root_path, class: "text-base font-medium text-white hover:text-gray-300" %>
-          <%= link_to 'Start free trial', root_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen" %>
+          <%= link_to 'Login', new_user_session_path, class: "text-base font-medium text-white hover:text-gray-300" %>
+          <%= link_to 'Start free trial', new_user_registration_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen" %>
+          
         </div>
+        <% end %>
       </nav>
     </div>
 

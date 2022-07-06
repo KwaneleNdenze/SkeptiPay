@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/views/**/*"],
+  content: ["./app/views/**/*", './app/javascript/**/*.js'],
   theme: {
     // screens: {
     //   sm: '480px',
@@ -12,9 +12,12 @@ module.exports = {
       colors: {
         darkGreen: '#00540f',
         lightGreen: '#43764c',
-        darkGray: '#32325d'
+        darkGray: '#32325d',
+        bodyGray: '#1e1e2f'
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // require('@tailwindcss/forms'),
+  ],
 }
