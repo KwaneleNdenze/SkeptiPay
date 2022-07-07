@@ -107,12 +107,20 @@
               <fieldset class="mt-4">
                 <legend class="sr-only">Notification method</legend>
                 <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-                  <% User.roles.keys.each do |role| %>
+                  <!-- <% User.roles.keys.each do |role| %>
                   <div class="flex items-center">
                     <%= f.radio_button :role, role, class: 'focus:ring-darkGreen h-4 w-4 text-white border-gray-300' %>
                     <%= f.label role.to_sym, class: 'ml-3 block text-sm font-medium text-white' %>
                   </div> 
-                  <% end %>                
+                  <% end %>  -->
+
+                  <% ['Client','Merchant'].each do |type| %>
+                    <div class="flex items-center">
+                      <%= f.radio_button :type, type, class: 'focus:ring-darkGreen h-4 w-4 text-white border-gray-300' %>
+                      <%= f.label type.to_sym, class: 'ml-3 block text-sm font-medium text-white' %>
+                    </div> 
+                  <% end %>
+
                 </div>
               </fieldset>
             </div>

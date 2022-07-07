@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of :email }
       it { should validate_presence_of :role }
       it { should validate_presence_of :encrypted_password }
+      it { should validate_presence_of :type }
 
       it { should have_one :account} 
 
