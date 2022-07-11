@@ -47,6 +47,7 @@ class CreateSkeptiPayTables < ActiveRecord::Migration[5.2]
     add_column :users, :role, :integer, default: 0
     add_column :users, :phone_number, :string
     add_column :users, :username, :string
+    add_column :users, :type, :string
     remove_column :users, :account_id, :integer
   end
 end
