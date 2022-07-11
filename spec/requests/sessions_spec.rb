@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Sessions" do
   it "signs user in and out" do
-    user = create(:user)
+    user = create(:user, :merchant)
 
     sign_in user
     get root_path
