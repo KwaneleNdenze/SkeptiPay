@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-
   context "valid user" do
     it "has a valid user" do
-      expect(build(:user)).to be_valid
+      expect(build(:user, :merchant)).to be_valid
     end
   end
 
@@ -21,7 +20,28 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of :type }
 
       it { should have_one :account} 
-
     end
   end
+
+  describe '#merchant?' do
+    it 'returns true if user type is Merchant' do
+      user = create(:user, :merchant)
+      expect(user.merchant?).to be_truthy
+    end
+  end
+
+  describe '#client?' do
+    it 'returns true if user type is Client' do
+      user = create(:user, :client)
+      expect(user.client?).to be_truthy
+    end
+  end
+
+  describe '#admin?' do
+    it 'returns true if user type is Admin' do
+      user = create(:user, :admin)
+      expect(user.admin?).to be_truthy
+    end
+  end
+  
 end

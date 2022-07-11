@@ -7,20 +7,18 @@ class User < ApplicationRecord
 
    devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
                
    def admin?
-      type == 'User::[Admin]'
+    type == 'User::Admin'
    end
 
    def merchant?
-      type == 'User::[Merchant]'
+    type == 'User::Merchant'
    end
 
    def client?
-      type == 'User::[Client]'
+    type == 'User::Client'
    end
    
-
 end
 
