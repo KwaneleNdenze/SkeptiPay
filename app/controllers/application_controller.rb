@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in? 
       "application_ui"
     else
-      is_a?(Devise::SessionsController) | is_a?(Devise::RegistrationsController) | is_a?(Devise::PasswordsController) ? "devise" : "application"
+      devise_controller? ? "devise" : "application"
     end
   end
 

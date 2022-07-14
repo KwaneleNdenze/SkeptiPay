@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .app_link {
+  @apply text-gray-300 hover:bg-lightGreen hover:text-white group flex items-center px-2 py-4 text-sm font-thin rounded-md;
+  }
+  .app_link_active {
+  @apply bg-cardBody;
+  }
+}
