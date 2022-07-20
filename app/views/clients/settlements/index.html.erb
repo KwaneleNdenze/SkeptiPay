@@ -1,0 +1,182 @@
+<main class="flex-1 pb-8">
+  <div class="mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card -->
+        <div class="overflow-hidden rounded-lg">
+        </div>
+        <div class="overflow-hidden rounded-lg">
+          <div class="p-5">
+          </div>
+        </div>
+        <div class="bg-cardBody overflow-hidden shadow rounded-lg">
+          <div class="p-5">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <!-- Heroicon name: outline/scale -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div class="ml-5 w-0 flex-1 text-right">
+                <dl>
+                  <dt class="text-sm font-thin text-darkText truncate">Available Balance</dt>
+                  <dd>
+                    <div class="text-lg font-medium text-white">R30,659.45</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="bg-cardBody px-5 py-3">
+            <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+            </div>
+          </div>
+        </div>
+        <!-- More items... -->
+      </div>
+      <% if @settlements.any? %>
+        <div id="accept-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+          <div class="relative w-full h-full max-w-md p-4 md:h-auto">
+            <div class="fixed inset-0 bg-darkGreen bg-opacity-25 transition-opacity" aria-hidden="true"></div>
+            <!-- Modal content -->
+            <div class="relative bg-cardBody rounded-lg shadow dark:bg-cardBody">
+              <button type="button" id="ok-btn" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="payment-modal">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+              <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Are you sure you want to settle payment?</h3>
+                <%= form_with model: Payment.new, local: true, html: {class: "space-y-6" } do |form| %>
+                  <%= form.number_field :account_id, value: current_user.id, type: 'hidden' %>
+                  <div class="flex justify-between">
+                    <a id="cancel-btn" class="w-1/3 mr-1 text-white bg-darkRed hover:bg-darkRed focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkRed dark:hover:bg-darkRed dark:focus:ring-blue-800">No, cancel</a>
+                    <%= form.submit 'Yes, proceed', class:"w-1/3 ml-1 text-white bg-darkGreen hover:bg-lightGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkGreen dark:hover:bg-lightGreen dark:focus:ring-blue-800" %>
+                  </div>
+                  <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                    Can't find company? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Invite company to register</a>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="decline-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+          <div class="relative w-full h-full max-w-md p-4 md:h-auto">
+            <div class="fixed inset-0 bg-darkGreen bg-opacity-25 transition-opacity" aria-hidden="true"></div>
+            <!-- Modal content -->
+            <div class="relative bg-cardBody rounded-lg shadow dark:bg-cardBody">
+              <button type="button" id="ok-decline-btn" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="payment-modal">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+              <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Are you sure you want to decline payment?</h3>
+                <%= form_with model: Payment.new, local: true, html: {class: "space-y-6" } do |form| %>
+                  <%= form.number_field :account_id, value: current_user.id, type: 'hidden' %>
+                  <div class="flex justify-between">
+                    <a id="cancel-decline-btn" class="w-1/3 mr-1 text-white bg-darkRed hover:bg-darkRed focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkRed dark:hover:bg-darkRed dark:focus:ring-blue-800">No, cancel</a>
+                    <%= form.submit 'Yes, decline', class:"w-1/3 ml-1 text-white bg-darkGreen hover:bg-lightGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkGreen dark:hover:bg-lightGreen dark:focus:ring-blue-800" %>
+                  </div>
+                  <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                    Can't find company? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Invite company to register</a>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <% if @settlements.any? %>
+          <% @settlements.each do |settlement| %>
+            <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <li class="col-span-1 bg-cardBody rounded-lg shadow divide-y divide-gray-200">
+                <div class="w-full flex items-center justify-between p-6 space-x-6">
+                  <div class="flex-1 truncate">
+                    <div class="flex items-center space-x-3">
+                      <h3 class="text-white text-sm font-medium truncate">Jane Cooper</h3>
+                      <span class="inline-flex rounded-full bg-darkGreen px-2 text-xs font-semibold leading-5 text-white">Pending</span>
+                    </div>
+                    <p class="mt-1 text-darkText text-sm truncate">SKEPTIPAY - Bloemfontein</p>
+                    <div class="flex">
+                      <span class="mt-1 mr-4 text-darkText mr-5 text-xs truncate">Amount Due: </span>
+                      <span class="mt-1 ml-4 text-white font-semibold text-xs truncate">R25,674.45</span>
+                    </div>
+                  </div>
+                  <img class="w-10 h-10 bg-darkGreen rounded-full flex-shrink-0" src="../img/undraw_female_avatar_w3jk.svg" alt="">
+                </div>
+                <div>
+                  <div class="-mt-px flex divide-x divide-darkText">
+                    <div class="w-0 flex-1 flex">
+                      <button id="btn-decline" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
+                        <!-- Heroicon name: solid/mail -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-darkRed h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span class="ml-3 text-white">Decline</span>
+                      </button>
+                    </div>
+                    <div class="-ml-px w-0 flex-1 flex">
+                      <button id="btn-accept" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
+                        <!-- Heroicon name: solid/phone -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-darkGreen h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span class="ml-3 text-white">Approve</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <!-- More people... -->
+            </ul>
+          <% end %>
+        <% else %>
+          <p class="text-white">No payments to settle</p>
+        <% end %>
+      </div>
+    </div>
+  </main>
+  <script>
+    // Grabs all the Elements by their IDs which we had given them
+      let modal = document.getElementById("accept-modal");
+      let btn = document.getElementById("btn-accept");
+
+      let declineModal = document.getElementById("decline-modal");
+      let btnDecline = document.getElementById("btn-decline");
+
+
+      let button = document.getElementById("ok-btn");
+      let buttonDecline = document.getElementById("ok-decline-btn");
+
+      let buttonClose = document.getElementById("cancel-btn");
+      let buttonCloseDecline = document.getElementById("cancel-decline-btn");
+        // We want the modal to open when the Open button is clicked
+      btn.onclick = function() {
+      modal.style = "fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex";
+      }
+      btnDecline.onclick = function() {
+      declineModal.style = "fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex";
+      }
+      // We want the modal to close when the OK button is clicked
+      button.onclick = function() {
+      modal.style.display = "none"
+      }
+      buttonDecline.onclick = function() {
+      declineModal.style.display = "none"
+      }
+
+      buttonClose.onclick = function() {
+      modal.style.display = "none"
+      }
+      buttonCloseDecline.onclick = function() {
+      declineModal.style.display = "none"
+      }
+
+      window.onload = function(event){
+      modal.style.display = "none"
+      declineModal.style.display = "none"
+      }
+  </script>

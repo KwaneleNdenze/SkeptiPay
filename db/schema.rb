@@ -10,12 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_06_083040) do
+ActiveRecord::Schema.define(version: 2022_07_14_120508) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company_name"
+    t.string "sector"
+    t.text "street_address"
+    t.string "surburb"
+    t.string "city"
+    t.string "province"
+    t.string "card_number"
+    t.string "expiry_date"
+    t.string "ccv"
+    t.string "gender"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
@@ -48,6 +60,7 @@ ActiveRecord::Schema.define(version: 2022_07_06_083040) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "account_id"
+    t.integer "recipient_id"
     t.index ["account_id"], name: "index_payments_on_account_id"
   end
 

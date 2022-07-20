@@ -1,0 +1,78 @@
+<main class="flex-1 pb-8">
+  <div class="mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+          <%= form_with model: @account, local: true do |form| %>
+            <div class="shadow sm:rounded-md sm:overflow-hidden">
+              <div class="bg-cardBody py-6 px-4 space-y-6 sm:p-6">
+                <div>
+                  <h3 class="text-lg leading-6 font-medium text-white">Account</h3>
+                  <p class="mt-1 text-sm text-darkText">Use a permanent address where you can recieve mail.</p>
+                </div>
+                <div class="grid grid-cols-6 gap-6">
+                  <div class="col-span-6 sm:col-span-3">
+                    <%= form.label 'First Name', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :first_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "First Name" %>
+                    <%= form.number_field :user_id, type: 'hidden', value: current_user.id %>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <%= form.label 'Last Name', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :last_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "Last Name" %>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <%= form.label 'Company Name', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :company_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "Company Name" %>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <%= form.label 'Sector', class: "block text-sm font-medium text-white" %>
+                    <%= form.select :sector, ["Financial Services", "ICT"], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" %>
+                  </div>
+                  <div class="col-span-6">
+                    <%= form.label 'Street Address', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :street_address, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "Street Address" %>
+                  </div>
+                  <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                    <%= form.label 'Surburb', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :surburb, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "Surburb" %>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <%= form.label 'City', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :city, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "City" %>
+                  </div>
+                  <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <%= form.label 'Province', class: "block text-sm font-medium text-white" %>
+                    <%= form.select :province, ["Gauteng", "Free State"], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" %>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-lg leading-6 font-medium text-white">Payment Details</h3>
+                  <p class="mt-1 text-sm text-darkText">Use a permanent address where you can recieve mail.</p>
+                </div>
+                <div class="grid grid-cols-6 gap-6">
+                  <div class="col-span-3 sm:col-span-6 lg:col-span-2">
+                    <%= form.label 'Card Number', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :card_number, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "9876 5432 1098" %>
+                  </div>
+                  <div class="col-span-3 sm:col-span-6 lg:col-span-2">
+                    <%= form.label 'Expiry Date', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :expiry_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "11/25" %>
+                  </div>
+                  <div class="col-span-3 sm:col-span-3 lg:col-span-2">
+                    <%= form.label 'CCV', class: "block text-sm font-medium text-white" %>
+                    <%= form.text_field :ccv, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "444" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-3 bg-cardBody text-right sm:px-6">
+              <%= link_to "Cancel", accounts_path, class:'bg-darkRed border border-white rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-darkRed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white' %>
+              <%= form.submit 'Save', class: "bg-darkGreen border border-white rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</main>

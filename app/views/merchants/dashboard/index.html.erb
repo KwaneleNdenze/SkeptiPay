@@ -1,0 +1,365 @@
+<main class="flex-1 pb-8">
+  <div class="mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Page header -->
+      <div class="bg-cardBody rounded-md">
+        <div class="px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
+          <div class="py-6 md:flex md:items-center md:justify-between lg:border-gray-200">
+            <div class="flex-1 min-w-0">
+              <!-- Profile -->
+              <div class="flex items-center">
+                <% if current_user.account.gender == "Male"%>
+                  <img class="hidden h-16 w-16 rounded-full sm:block" src="../img/undraw_male_avatar_323b.svg" alt="">
+                <% elsif current_user.account.gender == "Female"%>
+                  <img class="hidden h-16 w-16 rounded-full sm:block" src="../img/undraw_female_avatar_w3jk.svg" alt="">
+                <% else %>
+                <% end %>
+                <div>
+                  <div class="flex items-center">
+                    <img class="h-16 w-16 rounded-full sm:hidden" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.6&w=256&h=256&q=80" alt="">
+                    <h1 class="ml-3 text-2xl font-bold leading-7 text-white sm:leading-9 sm:truncate">Hi, <%= @account.first_name%></h1>
+                  </div>
+                  <dl class="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
+                    <dt class="sr-only">Company</dt>
+                    <dd class="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
+                      <!-- Heroicon name: solid/office-building -->
+                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd" />
+                      </svg>
+                      <%= @account.company_name %>
+                    </dd>
+                    <dt class="sr-only">Account status</dt>
+                    <dd class="mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
+                      <!-- Heroicon name: solid/check-circle -->
+                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-darkGreen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      Verified account
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+              <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Deposit Funds</button>
+              <button type="button" id="btn-transfer" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Request Payout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-lg leading-6 font-medium text-white">Overview</h2>
+      <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card -->
+        <div class="bg-cardBody overflow-hidden shadow rounded-lg">
+          <div class="p-5">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <!-- Heroicon name: outline/scale -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-darkRed h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div class="ml-5 w-0 flex-1 text-right">
+                <dl>
+                  <dt class="text-sm font-thin text-darkText truncate">Pending Outgoing Funds</dt>
+                  <dd>
+                    <div class="text-lg font-medium text-white">- R0.00</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="bg-cardBody px-5 py-3">
+            <div class="text-sm">
+              <a href="#" class="font-medium float-right text-white hover:text-lightGreen"></a>
+            </div>
+          </div>
+        </div>
+        <div class="bg-cardBody overflow-hidden shadow rounded-lg">
+          <div class="p-5">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <!-- Heroicon name: outline/scale -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-darkGreen h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div class="ml-5 w-0 flex-1 text-right">
+                <dl>
+                  <dt class="text-sm font-thin text-darkText truncate">Pending Incoming Funds</dt>
+                  <dd>
+                    <div class="text-lg font-medium text-white">+ R0.00</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="bg-cardBody px-5 py-3">
+            <div class="text-sm">
+              <a href="#" class="font-medium text-white hover:text-lightGreen"></a>
+            </div>
+          </div>
+        </div>
+        <div class="bg-cardBody overflow-hidden shadow rounded-lg">
+          <div class="p-5">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <!-- Heroicon name: outline/scale -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div class="ml-5 w-0 flex-1 text-right">
+                <dl>
+                  <dt class="text-sm font-thin text-darkText truncate">Available Balance</dt>
+                  <dd>
+                    <div class="text-lg font-medium text-white">R0.00</div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="bg-cardBody px-5 py-3">
+            <div class="text-sm">
+              <a href="#" class="font-medium text-white hover:text-lightGreen"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2 class="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-white sm:px-6 lg:px-8">Recent activity</h2>
+  </div>
+  <div class="mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-2">
+        <div class="shadow-lg rounded overflow-hidden">
+          <div class="py-3 text-sm px-5 font-thin text-darkText bg-cardBody">Total Received</div>
+          <div class="py-3 flex text-sm px-5 font-thin text-darkText bg-cardBody">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="font-thin text-darkGreen h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+            <div class="text-md font-medium text-white">R0.00</div>
+          </div>
+          <canvas class="p-5 font-medium bg-cardBody" id="chartLine"></canvas>
+        </div>
+        <div class="shadow-lg rounded overflow-hidden">
+          <div class="py-3 text-sm px-5 font-thin text-darkText bg-cardBody">Total Sent</div>
+          <div class="py-3 flex text-sm px-5 font-thin text-darkText bg-cardBody">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="font-thin text-darkRed h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+            <div class="text-md font-medium text-white">R0.00</div>
+          </div>
+          <canvas class="p-5 bg-cardBody" id="chartLine2"></canvas>
+        </div>
+      </div>
+    </div>
+    <div id="transfer-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+      <div class="relative w-full h-full max-w-md p-4 md:h-auto">
+        <div class="fixed inset-0 bg-darkGreen bg-opacity-25 transition-opacity" aria-hidden="true"></div>
+        <!-- Modal content -->
+        <div class="relative bg-cardBody rounded-lg shadow dark:bg-cardBody">
+          <button type="button" id="ok-btn" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="payment-modal">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+          </button>
+          <div class="px-6 py-6 lg:px-8">
+            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Make Virtual Transfer</h3>
+            <%= form_with model: Payment.new, local: true, html: {class: "space-y-6" } do |form| %>
+              <div>
+                <%= form.label 'Recipient', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form.text_field :recipient_id, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white', placeholder: 'Company or Full Name' %>
+              </div>
+              <div>
+                <%= form.label 'Amount', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                  <div class="max-w-lg flex rounded-md shadow-sm">
+                    <span class="bg-gray-50 border-gray-300 text-gray-900 focus:ring-gray-300 focus:border-gray-300 dark:bg-gray-600 inline-flex items-center px-3 rounded-l-md border border-r-0 text-sm dark:text-white">R</span>
+                    <%= form.text_field :amount, class: "bg-gray-50 border border-gray-300 text-gray-900 flex-1 focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 focus:ring-white focus:border-white min-w-0 rounded-none rounded-r-md text-sm dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: '1,000.00' %>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <%= form.label 'Reference', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <%= form.text_area :description, size: '0x3', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "What is the payment for?" %>
+                <p class="mt-2 text-sm text-gray-500">Required</p>
+              </div>
+              <!-- <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required="">
+                            </div>
+                            <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Save Recipient</label>
+                        </div>
+                        <a href="#" class="text-sm text-lightGreen hover:underline dark:text-lightGreen">Lost Password?</a>
+                    </div> -->
+              <%= form.number_field :account_id, value: current_user.id, type: 'hidden' %>
+              <div class="flex justify-between">
+                <a id="cancel-btn" class="w-1/3 mr-1 text-white bg-darkRed hover:bg-darkRed focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkRed dark:hover:bg-darkRed dark:focus:ring-blue-800">Cancel</a>
+                <%= form.submit 'Transfer', class:"w-1/3 ml-1 text-white bg-darkGreen hover:bg-lightGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkGreen dark:hover:bg-lightGreen dark:focus:ring-blue-800" %>
+              </div>
+              <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                Can't find company? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Invite company to register</a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+  // Grabs all the Elements by their IDs which we had given them
+    let modal = document.getElementById("transfer-modal");
+    let btn = document.getElementById("btn-transfer");
+    let button = document.getElementById("ok-btn");
+    let buttonClose = document.getElementById("cancel-btn");
+      // We want the modal to open when the Open button is clicked
+    btn.onclick = function() {
+    modal.style = "fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex";
+    }
+    // We want the modal to close when the OK button is clicked
+    button.onclick = function() {
+    modal.style.display = "none";
+    }
+    buttonClose.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    window.onload = function(event){
+    modal.style.display = "none";
+    }
+</script>
+<!-- Required chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Chart line -->
+<script>
+  const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const labelsSecond = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Total Received",
+        backgroundColor: "#00540f",
+        borderWidth: 2,
+        borderColor: "#00540f",
+        color: "#00540f",
+        borderWidth: 2,
+        borderDash: [],
+        borderDashOffset: 0.0,
+        pointBackgroundColor: "#00540f",
+        pointBorderColor: "rgba(255,255,255,0)",
+        pointHoverBackgroundColor: "#00540f",
+        pointBorderWidth: 20,
+        pointHoverRadius: 4,
+        pointHoverBorderWidth: 15,
+        pointRadius: 1,
+
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      },
+    ],
+  };
+
+  const data2 = {
+    labels: labelsSecond,
+    datasets: [
+      {
+        label: "Total Sent",
+        backgroundColor: "#8b0000",
+        borderWidth: 2,
+        borderColor: "#8b0000",
+        color: "#8b0000",
+        borderWidth: 2,
+        borderDash: [],
+        borderDashOffset: 0.0,
+        pointBackgroundColor: "#8b0000",
+        pointBorderColor: "rgba(255,255,255,0)",
+        pointHoverBackgroundColor: "#8b0000",
+        pointBorderWidth: 20,
+        pointHoverRadius: 4,
+        pointHoverBorderWidth: 15,
+        pointRadius: 1,
+
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      },
+    ],
+  };
+
+
+  const configLineChart = {
+    type: "line",
+    data,
+    options: {
+      scales: {
+        x: {
+          ticks: {
+            font: {
+              size: 14,
+            }
+          }
+        },
+        y: {
+          ticks: {
+            font: {
+              size: 14,
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false,
+        }
+      }
+    }
+  };
+
+  const configLineChart2 = {
+    type: "line",
+    data: data2,
+    options: {
+        scales: {
+        x: {
+          ticks: {
+            font: {
+              size: 14,
+            }
+          }
+        },
+        y: {
+          ticks: {
+            font: {
+              size: 14,
+            }
+          }
+        }
+        },
+      plugins: {
+        legend: {
+          display: false,
+        }
+      }
+    }
+  };
+
+  var chartLine = new Chart(
+    document.getElementById("chartLine"),
+    configLineChart
+  );
+
+  var chartLine2 = new Chart(
+    document.getElementById("chartLine2"),
+    configLineChart2
+  );
+</script>

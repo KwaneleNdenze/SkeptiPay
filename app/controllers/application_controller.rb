@@ -11,7 +11,15 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    dashboard_path
+    if current_user.type == "User::Admin"
+      admins_dashboard_path
+    elsif current_user.type == "User::Merchant"
+      merchants_dashboard_path
+    elsif current_user.type == "User::Client"
+      clients_dashboard_path
+    else
+      user_session_path
+    end
   end
 
   def after_sign_out_path_for(resource)

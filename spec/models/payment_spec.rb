@@ -8,8 +8,6 @@ RSpec.describe Payment, type: :model do
     context "presence" do
       it { should validate_presence_of :amount }
       it { should validate_presence_of :description }
-      it { should validate_presence_of :verification_code }
-      it { should validate_presence_of :status}
       it { should belong_to :account }        
     end
   end

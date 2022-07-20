@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@rails/webpacker": "^5.4.3",
+    "@tailwindcss/forms": "^0.5.2",
     "add": "^2.0.6",
     "babel-loader": "^8.2.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
