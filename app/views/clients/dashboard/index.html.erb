@@ -174,7 +174,7 @@
           </button>
           <div class="px-6 py-6 lg:px-8">
             <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Make Virtual Transfer</h3>
-            <%= form_with model: Payment.new, local: true, html: {class: "space-y-6" } do |form| %>
+            <%= form_for Payment.new, url:{controller: "payments", action: "create"}, local: true, html: {class: "space-y-6" } do |form| %>
               <div>
                 <%= form.label 'Recipient', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
                 <%= form.text_field :recipient_id, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white', placeholder: 'Company or Full Name' %>
