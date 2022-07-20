@@ -11,9 +11,7 @@ class AccountsController < ApplicationController
     @account = Account.create(account_params)
    
     if @account.save
-      byebug
-      redirect_to accounts_path
-      # redirect_to @account, notice: 'Product was successfully created.'
+      redirect_to accounts_path, notice: 'Account was successfully created.'
     else
       render 'index'
     end
@@ -27,8 +25,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
  
     if @account.update(account_params)
-    redirect_to accounts_path
-    # redirect_to @account, notice: 'Product was successfully updated.'
+      redirect_to accounts_path, notice: 'Account was successfully updated.'
     else
       render 'edit'
     end

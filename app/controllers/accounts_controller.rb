@@ -12,7 +12,6 @@ class AccountsController < ApplicationController
     @account = Account.create(account_params)
    
     if @account.save
-      byebug
       redirect_to accounts_path
       # redirect_to @account, notice: 'Product was successfully created.'
     else

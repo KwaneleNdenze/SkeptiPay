@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.type == "User::Admin"
-    admins_dashboard_path
+      admins_dashboard_path
     elsif current_user.type == "User::Merchant"
       merchants_dashboard_path
     elsif current_user.type == "User::Client"

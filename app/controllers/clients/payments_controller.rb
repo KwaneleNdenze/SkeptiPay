@@ -9,7 +9,6 @@ class Clients::PaymentsController < ApplicationController
    
     if @payment.save
       redirect_to clients_payments_path, notice: 'Virtual Payment was successfully made.'
-      # redirect_to @payment, notice: 'Product was successfully created.'
     else
       render clients_payments_path
     end
@@ -19,10 +18,9 @@ class Clients::PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
  
     if @payment.update(payment_params)
-    redirect_to @payment
-    # redirect_to @payment, notice: 'Product was successfully updated.'
+    redirect_to clients_payments_path, notice: 'Product was successfully updated.'
     else
-      render 'edit'
+      render clients_payments_path
     end
   end
 

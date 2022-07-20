@@ -32,10 +32,7 @@ Rails.application.routes.draw do
   get 'admins_clients', to: 'admins/clients#index'
   get 'admins_merchants', to: 'admins/merchants#index'
 
-  resources :'payments'
-  resources :withdrawals
   resources :accounts
-  resources :settlements
   
   get 'invoices', to: 'invoices#index'
   get 'notifications', to: 'notifications#index'

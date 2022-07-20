@@ -1,6 +1,6 @@
 class AddColumnsToSkeptipay < ActiveRecord::Migration[5.2]
   def change
-    add_column :payments, :recipient_id, :string
+    add_column :payments, :recipient_id, :integer
     add_column :accounts, :first_name, :string
     add_column :accounts, :last_name, :string
     add_column :accounts, :company_name, :string

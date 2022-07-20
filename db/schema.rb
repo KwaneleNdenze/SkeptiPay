@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2022_07_14_120508) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "account_id"
-    t.string "recipient_id"
+    t.integer "recipient_id"
     t.index ["account_id"], name: "index_payments_on_account_id"
   end
 
