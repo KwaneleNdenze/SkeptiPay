@@ -1,5 +1,5 @@
 class User < ApplicationRecord   
-   has_one :account
+   has_one :account, dependent: :destroy
    # validations
    validates_presence_of :username, :email, :phone_number, :encrypted_password, :role, :type
 

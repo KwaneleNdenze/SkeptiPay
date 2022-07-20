@@ -8,4 +8,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :phone_number, :username, :type])
   end
 
+  # The path used after sign up.
+  def after_sign_up_path_for(resource)
+    new_account_path
+  end
+
 end
