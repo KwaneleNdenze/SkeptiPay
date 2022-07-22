@@ -15,11 +15,15 @@ Rails.application.routes.draw do
   get 'clients_payments', to: 'clients/payments#index'
   post 'clients_payments', to: 'clients/payments#create'
   get 'merchants_payments', to: 'merchants/payments#index'
+  post 'merchants_payments', to: 'merchants/payments#create'
+  patch 'merchants_payments/:id', to: 'merchants/payments#update'
 
   get 'clients_settlements', to: 'clients/settlements#index'
 
   get 'clients_withdrawals', to: 'clients/withdrawals#index'
+  post 'clients_withdrawals', to: 'clients/withdrawals#create'
   get 'merchants_withdrawals', to: 'merchants/withdrawals#index'
+  post 'merchants_withdrawals', to: 'merchants/withdrawals#create'
   get 'admins_withdrawals', to: 'admins/withdrawals#index'
 
   get 'clients_notifications', to: 'clients/notifications#index'
@@ -32,9 +36,12 @@ Rails.application.routes.draw do
   get 'admins_clients', to: 'admins/clients#index'
   get 'admins_merchants', to: 'admins/merchants#index'
 
+  get 'merchants_invoices', to: 'merchants/invoices#index'
+  get 'clients_invoices', to: 'clients/invoices#index'
+
   resources :accounts
   
-  get 'invoices', to: 'invoices#index'
+  
   get 'notifications', to: 'notifications#index'
 
 end

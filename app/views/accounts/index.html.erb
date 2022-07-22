@@ -80,14 +80,16 @@
                     <dt class="text-sm font-medium text-white">Email</dt>
                     <dd class="mt-1 text-sm text-darkText"><%= current_user.email%></dd>
                   </div>
-                  <div class="sm:col-span-1">
-                    <dt class="text-sm font-medium text-white">Company</dt>
-                    <dd class="mt-1 text-sm text-darkText"><%= @account.company_name %></dd>
-                  </div>
-                  <div class="sm:col-span-1">
-                    <dt class="text-sm font-medium text-white">Sector</dt>
-                    <dd class="mt-1 text-sm text-darkText"><%= @account.sector %></dd>
-                  </div>
+                  <%if @current_user.type == 'User::Merchant'%>
+                    <div class="sm:col-span-1">
+                      <dt class="text-sm font-medium text-white">Company</dt>
+                      <dd class="mt-1 text-sm text-darkText"><%= @account.company_name %></dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                      <dt class="text-sm font-medium text-white">Sector</dt>
+                      <dd class="mt-1 text-sm text-darkText"><%= @account.sector %></dd>
+                    </div>
+                  <% end %>
                   <div class="sm:col-span-1">
                     <dt class="text-sm font-medium text-white">Location</dt>
                     <dd class="mt-1 text-sm text-darkText"><%= @account.street_address %>, <%= @account.surburb %>, <%= @account.city%>, <%= @account.province%></dd>

@@ -197,7 +197,7 @@
             </button>
             <div class="px-6 py-6 lg:px-8">
               <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Request Payout</h3>
-              <%= form_with model: Withdrawal.new, local: true, html: {class: "space-y-6" } do |form| %>
+              <%= form_for Withdrawal.new, url:{action: "create"},  local: true, html: {class: "space-y-6" } do |form| %>
                 <div class="mt-6 flex items-center space-x-3 md:mt-0 md:ml-4">
                   <a class="w-full justify-center inline-flex px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen">R100 </a>
                   <a class="w-full justify-center inline-flex  px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen" data-modal-toggle="payment-modal">R200 </a>
@@ -265,4 +265,11 @@
       }
 
       }
+</script>
+<script>
+  var element = document.getElementById('withdrawal_amount');
+  var maskOptions = {
+    mask: '000,000.00'
+  };
+  var mask = IMask(element, maskOptions);
 </script>

@@ -135,11 +135,11 @@
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-white">R<%= payment.amount%></td>
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                              <button id="btn-pay" type="button" class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-darkGreen hover:border-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                              <button id="btn-request" type="button" class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-darkGreen hover:border-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
                                 <!-- Heroicon name: solid/mail -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                                </svg>
+                                </svg> Request Payment
                               </button>
                             </td>
                           </tr>
@@ -198,6 +198,61 @@
               </div>
             </div>
             <!-- Main modal -->
+            <div id="request-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+              <div class="relative w-full h-full max-w-md p-4 md:h-auto">
+                <div class="fixed z-10 inset-0 bg-darkGreen bg-opacity-25 transition-opacity" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <!-- This element is to trick the browser into centering the modal contents. -->
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true" id="ok-btn">&#8203;</span>
+                    <div class="relative inline-block align-bottom bg-cardBody rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                      <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-white sm:mx-0 sm:h-10 sm:w-10">
+                          <!-- Heroicon name: outline/exclamation -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-darkRed" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                          <h3 class="text-lg leading-6 font-medium text-white" id="modal-title">Request Settlement?</h3>
+                          <div class="mt-2">
+                            <p class="text-sm text-darkText">Are you sure you want to request settlement? Settlements should only be requested upon job completion.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                        <%= form_for Payment.find(1), url:{controller: "payments", action: "update", id: 1}, method: :patch, local: true do |form| %>
+                          <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-darkGreen text-base font-medium text-white hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightGreen sm:ml-3 sm:w-auto sm:text-sm">Request</button>
+                          <button type="button" id="cancel-btn" class="mt-3 w-full inline-flex justify-center rounded-md border border-darkRed shadow-sm px-4 py-2 bg-darkRed text-base font-medium text-white hover:bg-darkRed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
+      <script>
+        // Grabs all the Elements by their IDs which we had given them
+        let modal = document.getElementById("request-modal");
+        let btn = document.getElementById('btn-request');
+
+        let button = document.getElementById("ok-btn");
+        let buttonClose = document.getElementById("cancel-btn");
+          // We want the modal to open when the Open button is clicked
+        btn.onclick = function(event) {
+        modal.style = "fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex";
+        }
+        // We want the modal to close when the OK button is clicked
+        button.onclick = function() {
+        modal.style.display = "none";
+        }
+        buttonClose.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        window.onload = function(event){
+        modal.style.display = "none";
+        }
+      </script>

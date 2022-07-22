@@ -10,7 +10,7 @@ class Clients::PaymentsController < ApplicationController
     if @payment.save
       redirect_to clients_payments_path, notice: 'Virtual Payment was successfully made.'
     else
-      render clients_payments_path
+      render 'index'
     end
   end
 
@@ -20,7 +20,7 @@ class Clients::PaymentsController < ApplicationController
     if @payment.update(payment_params)
     redirect_to clients_payments_path, notice: 'Product was successfully updated.'
     else
-      render clients_payments_path
+      render 'index'
     end
   end
 
