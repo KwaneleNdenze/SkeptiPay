@@ -7,12 +7,13 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-// import Rails from '@rails/ujs'
+import Rails from '@rails/ujs'
 // import "@hotwired/turbo-rails"
-// import * as ActiveStorage from "@rails/activestorage"
+import * as ActiveStorage from "@rails/activestorage"
 
-// Rails.start()
-// ActiveStorage.start()
+Rails.start()
+ActiveStorage.start()
 
 import '../css/application.css'
+import 'controllers'
 console.log('Hello World from Webpacker')
