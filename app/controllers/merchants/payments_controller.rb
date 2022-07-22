@@ -20,10 +20,10 @@ class Merchants::PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
  
     if @payment.update(payment_params)
-    redirect_to @payment
+    redirect_to payments_path
     # redirect_to @payment, notice: 'Product was successfully updated.'
     else
-      render 'edit'
+      render 'index'
     end
   end
 

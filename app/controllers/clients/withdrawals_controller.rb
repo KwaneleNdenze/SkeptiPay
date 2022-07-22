@@ -9,7 +9,7 @@ class Clients::WithdrawalsController < ApplicationController
     @withdrawal = @account.withdrawals.build(withdrawal_params)
    
     if @withdrawal.save
-      redirect_to withdrawals_path
+      redirect_to clients_withdrawals_path
       # redirect_to @withdrawal, notice: 'Product was successfully created.'
     else
       render 'index'

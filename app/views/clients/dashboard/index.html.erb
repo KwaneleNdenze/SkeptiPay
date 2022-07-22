@@ -177,7 +177,7 @@
             <%= form_for Payment.new, url:{controller: "payments", action: "create"}, local: true, html: {class: "space-y-6" } do |form| %>
               <div>
                 <%= form.label 'Recipient', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form.text_field :recipient_id, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white', placeholder: 'Company or Full Name' %>
+                <%= form.select :recipient_id, Account.where.not(company_name: nil).collect { |m| [m.company_name, m.id] }, {},class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white', placeholder: 'Company or Full Name' %>
               </div>
               <div>
                 <%= form.label 'Amount', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
@@ -238,6 +238,13 @@
     window.onload = function(event){
     modal.style.display = "none";
     }
+</script>
+<script>
+  var element = document.getElementById('payment_amount');
+  var maskOptions = {
+    mask: '000,000.00'
+  };
+  var mask = IMask(element, maskOptions);
 </script>
 <!-- Required chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

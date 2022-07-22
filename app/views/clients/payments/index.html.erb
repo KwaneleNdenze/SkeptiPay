@@ -285,3 +285,10 @@
 
             }
       </script>
+      <script>
+        var element = document.getElementById('payment_amount');
+        var maskOptions = {
+          mask: '000,000.00'
+        };
+        var mask = IMask(element, maskOptions);
+      </script>

@@ -1,4 +1,4 @@
-<main class="flex-1 pb-8">
+<main class="flex-1 pb-8" data-controller="balance">
   <div class="mt-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -9,7 +9,7 @@
           <div class="p-5">
           </div>
         </div>
-        <div class="bg-cardBody overflow-hidden shadow rounded-lg">
+        <div class="bg-cardBody hidden overflow-hidden shadow rounded-lg" data-balance-target="sections">
           <div class="p-5">
             <div class="flex items-center">
               <div class="flex-shrink-0">
@@ -60,8 +60,8 @@
                   </div>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-6 sm:flex-shrink-0">
-                  <button type="button" class="inline-flex text-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Change Card</button>
-                  <button type="button" id="btn-withdraw" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">Request Payout</button>
+                  <button type="button" data-action="click->balance#show" class="inline-flex text-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Change Card</button>
+                  <button type="button" data-action="click->balance#hide" id="btn-withdraw" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">Request Payout</button>
                 </div>
               </div>
             </div>
@@ -187,17 +187,17 @@
         </div>
       </div>
       <!-- Main modal -->
-      <div id="withdrawal-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+      <div data-balance-target="section" tabindex="-1" class="hidden fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
         <div class="relative w-full h-full max-w-md p-4 md:h-auto">
           <div class="fixed inset-0 bg-darkGreen bg-opacity-25 transition-opacity" aria-hidden="true"></div>
           <!-- Modal content -->
           <div class="relative bg-cardBody rounded-lg shadow dark:bg-cardBody">
-            <button type="button" id="ok-btn" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="payment-modal">
+            <button type="button" data-action="" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="payment-modal">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             </button>
             <div class="px-6 py-6 lg:px-8">
               <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Request Payout</h3>
-              <%= form_with model: Withdrawal.new, local: true, html: {class: "space-y-6" } do |form| %>
+              <%= form_for Withdrawal.new, url:{action: "create"},  local: true, html: {class: "space-y-6" } do |form| %>
                 <div class="mt-6 flex items-center space-x-3 md:mt-0 md:ml-4">
                   <a class="w-full justify-center inline-flex px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen">R100 </a>
                   <a class="w-full justify-center inline-flex  px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen" data-modal-toggle="payment-modal">R200 </a>
@@ -255,14 +255,17 @@
       modal.style.display = "none";
       }
 
-      window.onload = function(event){
-        modal.style.display = "none";
-
-      }
       window.onclick = function(event) {
       if (event.target == modal) {
           modal.style.display = "none";
       }
 
       }
+</script>
+<script>
+  var element = document.getElementById('withdrawal_amount');
+  var maskOptions = {
+    mask: '000,000.00'
+  };
+  var mask = IMask(element, maskOptions);
 </script>

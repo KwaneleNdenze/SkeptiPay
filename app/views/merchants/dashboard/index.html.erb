@@ -42,7 +42,7 @@
             </div>
             <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
               <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Deposit Funds</button>
-              <button type="button" id="btn-transfer" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Request Payout</button>
+              <button type="button" id="btn-request" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Request Payout</button>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@
         </div>
       </div>
     </div>
-    <div id="transfer-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+    <div id="withdrawal-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
       <div class="relative w-full h-full max-w-md p-4 md:h-auto">
         <div class="fixed inset-0 bg-darkGreen bg-opacity-25 transition-opacity" aria-hidden="true"></div>
         <!-- Modal content -->
@@ -173,25 +173,22 @@
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </button>
           <div class="px-6 py-6 lg:px-8">
-            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Make Virtual Transfer</h3>
-            <%= form_with model: Payment.new, local: true, html: {class: "space-y-6" } do |form| %>
-              <div>
-                <%= form.label 'Recipient', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form.text_field :recipient_id, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white', placeholder: 'Company or Full Name' %>
+            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Request Payout</h3>
+            <%= form_for Withdrawal.new, url:{controller: "withdrawals", action: "create"},  local: true, html: {class: "space-y-6" } do |form| %>
+              <div class="mt-6 flex items-center space-x-3 md:mt-0 md:ml-4">
+                <a class="w-full justify-center inline-flex px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen">R100 </a>
+                <a class="w-full justify-center inline-flex  px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen" data-modal-toggle="payment-modal">R200 </a>
+                <a class="w-full justify-center inline-flex px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen">R500 </a>
+                <a class="w-full justify-center inline-flex  px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-darkGreen hover:bg-lightGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-darkGreen" data-modal-toggle="payment-modal">R1000</a>
               </div>
               <div>
-                <%= form.label 'Amount', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Amount</label>
                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                   <div class="max-w-lg flex rounded-md shadow-sm">
                     <span class="bg-gray-50 border-gray-300 text-gray-900 focus:ring-gray-300 focus:border-gray-300 dark:bg-gray-600 inline-flex items-center px-3 rounded-l-md border border-r-0 text-sm dark:text-white">R</span>
-                    <%= form.text_field :amount, class: "bg-gray-50 border border-gray-300 text-gray-900 flex-1 focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 focus:ring-white focus:border-white min-w-0 rounded-none rounded-r-md text-sm dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: '1,000.00' %>
+                    <%= form.text_field :amount, class: "bg-gray-50 border border-gray-300 text-gray-900 flex-1 focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 focus:ring-white focus:border-white min-w-0 rounded-none rounded-r-md text-sm dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" %>
                   </div>
                 </div>
-              </div>
-              <div>
-                <%= form.label 'Reference', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-                <%= form.text_area :description, size: '0x3', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "What is the payment for?" %>
-                <p class="mt-2 text-sm text-gray-500">Required</p>
               </div>
               <!-- <div class="flex justify-between">
                         <div class="flex items-start">
@@ -202,13 +199,12 @@
                         </div>
                         <a href="#" class="text-sm text-lightGreen hover:underline dark:text-lightGreen">Lost Password?</a>
                     </div> -->
-              <%= form.number_field :account_id, value: current_user.id, type: 'hidden' %>
               <div class="flex justify-between">
                 <a id="cancel-btn" class="w-1/3 mr-1 text-white bg-darkRed hover:bg-darkRed focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkRed dark:hover:bg-darkRed dark:focus:ring-blue-800">Cancel</a>
-                <%= form.submit 'Transfer', class:"w-1/3 ml-1 text-white bg-darkGreen hover:bg-lightGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkGreen dark:hover:bg-lightGreen dark:focus:ring-blue-800" %>
+                <%= form.submit 'Submit', class: "w-1/3 ml-1 text-white bg-darkGreen hover:bg-lightGreen focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-darkGreen dark:hover:bg-lightGreen dark:focus:ring-blue-800" %>
               </div>
               <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                Can't find company? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Invite company to register</a>
+                Funds may reflect after 3 business days. <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Find out more</a>
               </div>
             <% end %>
           </div>
@@ -218,9 +214,16 @@
   </div>
 </main>
 <script>
+  var element = document.getElementById('withdrawal_amount');
+  var maskOptions = {
+    mask: '000,000.00'
+  };
+  var mask = IMask(element, maskOptions);
+</script>
+<script>
   // Grabs all the Elements by their IDs which we had given them
-    let modal = document.getElementById("transfer-modal");
-    let btn = document.getElementById("btn-transfer");
+    let modal = document.getElementById("withdrawal-modal");
+    let btn = document.getElementById("btn-request");
     let button = document.getElementById("ok-btn");
     let buttonClose = document.getElementById("cancel-btn");
       // We want the modal to open when the Open button is clicked
